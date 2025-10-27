@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: producer
-          image: himatejaawsdevops/producer:latest
+          image: himateja0206/producer:latest
           ports:
             - containerPort: 8080
           env:
@@ -27,4 +27,5 @@ spec:
               value: "amqp://user:password@rabbitmq.messaging.svc.cluster.local:5672"
             - name: QUEUE_NAME
               value: "task_queue"
+
 

@@ -1,16 +1,9 @@
 # RabbitMQ-EKS-project
-1.	PROJECT OVERVIEW.
-  Goal:
-•	Provision a resilient Amazon EKS cluster.
-•	Run RabbitMQ inside the cluster (accessible to apps in same namespace).
-•	Provide two sample Python apps: a producer that publishes messages and a consumer that receives them.
- Simple architecture:
-•	EKS cluster (private control plane, public worker nodes or managed node groups)
-•	Namespace messaging
-o	RabbitMQ (StatefulSet via Helm chart) + Service (ClusterIP)
-o	producer Deployment
-o	consumer Deployment
-Apps communicate with RabbitMQ using the internal cluster DNS or via a Kubernetes service name.
+1. Project Overview:
+   Goal:
+   1. Provision a resilient Amazon EKS cluster.
+   2. Run RabbitMQ inside cluster
+   3. Provide two sample python apps: a producer that publishes message and a consumer that receives them.
 
 2.RabbitMQ is a message broker that helps you when you want middleware between different applications or systems, allowing them to communicate with each other by exchanging messages.
 

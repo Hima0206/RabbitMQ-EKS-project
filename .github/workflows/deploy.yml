@@ -70,9 +70,9 @@ jobs:
       - name: Deploy to EKS
         working-directory: ${{ github.workspace }}
         run: |
-          kubectl apply -f K8S/rabbitmq.yaml
-          kubectl apply -f K8S/producer-deployment.yaml
-          kubectl apply -f K8S/consumer-deployment.yaml
+          kubectl apply -f k8s_manifest/rabbitmq.yaml
+          kubectl apply -f k8s_manifest/producer-deployment.yaml
+          kubectl apply -f k8s_manifest/consumer-deployment.yaml
 
       - name: Verify deployment
         run: |

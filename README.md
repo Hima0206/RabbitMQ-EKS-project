@@ -21,18 +21,19 @@ Producer → Exchange → Queue → Consumer.
 • The exchange uses routing rules to determine which queue(s) to send the message to.
 • The consumer retrieves the message from the queue and processes it.
 
-3. Dependencies
-| Component          | Version    | Description                                                         |
-| ------------------ | ---------- | ------------------------------------------------------------------- |
-| **Python**         | 3.11       | Used for writing Producer and Consumer applications                 |
-| **Docker**         | 24.0+      | Used to containerize the Producer and Consumer                      |
-| **RabbitMQ**       | 3.8.3-rc.1 | Message broker used for communication between Producer and Consumer |
-| **Pika**           | 1.3.2      | Python client library for RabbitMQ                                  |
-| **Terraform**      | 1.4        | Used for provisioning AWS EKS cluster and node groups               |
-| **AWS CLI**        | 2.31       | Used to interact with AWS services and configure EKS                |
-| **kubectl**        | 1.32       | Used to manage Kubernetes resources                                 |
-| **GitHub Actions** | —          | CI/CD tool used for automated build and deployment                  |
-| **AWS EKS**        | —          | Managed Kubernetes service for running workloads                    |
+3. Tools Used
+Python – for Producer and Consumer scripts
+
+RabbitMQ – message broker for sending and receiving messages
+
+Docker – for containerization
+
+Terraform – for infrastructure setup (EKS, VPC, Node Groups)
+
+Kubernetes (EKS) – to deploy and manage the containers
+
+GitHub Actions – for automating the build and deployment pipeline
+
 
 4. Infrastructure & Deployment
 

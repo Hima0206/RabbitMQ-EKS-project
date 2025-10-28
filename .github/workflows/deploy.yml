@@ -30,7 +30,7 @@ jobs:
 
       - name: Build and push consumer image
         run: |
-          docker build -t himateja0206/consumer:latest ./Consumer
+          docker build -t himateja0206/consumer:latest ./consumer
           docker push himateja0206/consumer:latest
 
   deploy:

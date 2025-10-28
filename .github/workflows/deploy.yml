@@ -68,6 +68,7 @@ jobs:
           kubectl get namespace messaging || kubectl create namespace messaging
 
       - name: Deploy to EKS
+        working-directory: ${{ github.workspace }}
         run: |
           kubectl apply -f K8S/rabbitmq.yaml
           kubectl apply -f K8S/producer-deployment.yaml

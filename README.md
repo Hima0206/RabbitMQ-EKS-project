@@ -5,7 +5,7 @@
    2. Run RabbitMQ inside cluster
    3. Provide two sample python apps: a producer that publishes message and a consumer that receives them.
 
-2.RabbitMQ is a message broker that helps you when you want middleware between different applications or systems, allowing them to communicate with each other by exchanging messages.
+2. RabbitMQ is a message broker that helps you when you want middleware between different applications or systems, allowing them to communicate with each other by exchanging messages.
 
 Producer → Exchange → Queue → Consumer.
 

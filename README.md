@@ -8,8 +8,7 @@
 2. RabbitMQ is a message broker that helps you when you want middleware between different applications or systems, allowing them to communicate with each other by exchanging messages.
 
    <img width="1700" height="1176" alt="rabbitmq" src="https://github.com/user-attachments/assets/f4b6b20f-bbfb-4566-863c-9476609344cc" />
-
-    Producer → Exchange → Queue → Consumer.
+   
      1. The producer sends message to Exchange.
      2. The exchange uses routing rules to determine which queue to send the message to.
      3. The consumer retrieves the message from the queue and processes it.

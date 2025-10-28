@@ -4,7 +4,7 @@ metadata:
   name: consumer-deployment 
   namespace: messaging
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: consumer
@@ -27,5 +27,6 @@ spec:
               value: "amqp://user:password@rabbitmq.messaging.svc.cluster.local:5672"
             - name: QUEUE_NAME
               value: "task_queue"
+
 
 

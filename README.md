@@ -7,26 +7,18 @@
 
 2. RabbitMQ is a message broker that helps you when you want middleware between different applications or systems, allowing them to communicate with each other by exchanging messages.
 
-Producer → Exchange → Queue → Consumer.
+  Producer → Exchange → Queue → Consumer.
+  1. The producer sends message to Exchange.
+  2. The exchange uses routing rules to determine which queue to send the message to.
+  3. The consumer retrieves the message from the queue and processes it.
 
-
-• The producer sends a message to an exchange.
-• The exchange uses routing rules to determine which queue(s) to send the message to.
-• The consumer retrieves the message from the queue and processes it.
 
 3. Tools Used
-Python – for Producer and Consumer scripts
-
-RabbitMQ – message broker for sending and receiving messages
-
-Docker – for containerization
-
-Terraform – for infrastructure setup (EKS, VPC, Node Groups)
-
-Kubernetes (EKS) – to deploy and manage the containers
-
-GitHub Actions – for automating the build and deployment pipeline
-
+   1. python- for producer and consumer scripts
+   2. RabbitMQ- Message broker for sending and receiving messages
+   3. Docker- for containerization
+   4. EKS- To deploy and mange the containers
+   5. GitHub Actions- For automating the build and deployment pipeline
 
 4. Infrastructure & Deployment
 

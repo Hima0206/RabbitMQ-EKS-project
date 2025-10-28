@@ -1,24 +1,23 @@
 import pika
 import os
+import time
 
-# Environment variables (with defaults)
+# Environment variables
 RABBITMQ_URL = os.getenv('RABBITMQ_URL', 'amqp://guest:guest@localhost:5672/')
 QUEUE_NAME = os.getenv('QUEUE_NAME', 'default_queue')
 
-# Parse RabbitMQ connection URL
+# Setup connection
 url_params = pika.URLParameters(RABBITMQ_URL)
 connection = pika.BlockingConnection(url_params)
 channel = connection.channel()
 
-# Declare the queue
+# Declare queue
 channel.queue_declare(queue=QUEUE_NAME, durable=True)
 
-# ✅ Use connection parameters for heartbeat instead of direct property
-# (heartbeat must be set when creating connection)
-# Example: pika.BlockingConnection(pika.ConnectionParameters(heartbeat=1000))
-
-for i in range(100):
-    message = f"Message {i + 1}"
+# Continuous message producer
+count = 1
+while True:
+    message = f"Message {count}"
     channel.basic_publish(
         exchange='',
         routing_key=QUEUE_NAME,
@@ -28,7 +27,9 @@ for i in range(100):
         )
     )
     print(f"Sent: {message}")
+    count += 1
+    time.sleep(1)  # delay between messages
 
-# Clean up
+# Close resources (though in an infinite loop, this won’t be reached)
 channel.close()
 connection.close()

@@ -16,7 +16,6 @@ Apps communicate with RabbitMQ using the internal cluster DNS or via a Kubernete
 
 Producer → Exchange → Queue → Consumer.
 
-<img width="800" height="2000" alt="Untitled" src="https://github.com/user-attachments/assets/959a6585-401b-4e03-84cb-e8448589232e" />
 
 • The producer sends a message to an exchange.
 • The exchange uses routing rules to determine which queue(s) to send the message to.

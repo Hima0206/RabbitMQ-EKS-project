@@ -1,0 +1,71 @@
+name: CI/CD Pipeline - RabbitMQ Producer & Consumer
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Push Docker Images
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push producer image
+        run: |
+          docker build -t himateja0206/producer:latest ./Producer
+          docker push himateja0206/producer:latest
+
+      - name: Build and push consumer image
+        run: |
+          docker build -t himateja0206/consumer:latest ./Consumer
+          docker push himateja0206/consumer:latest
+
+  deploy:
+    name: Deploy to EKS
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/v1.34.0/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+          kubectl version --client
+
+      - name: Set up kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
+          chmod 600 ~/.kube/config
+    
+      - name: Create namespace (if not exists)
+        run: |
+          kubectl get namespace messaging || kubectl create namespace messaging
+
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f K8S/rabbitmq.yaml
+          kubectl apply -f K8S/producer-deployment.yaml
+          kubectl apply -f K8S/consumer-deployment.yaml
+
+      - name: Verify deployment
+        run: |
+          kubectl get pods -n messaging
+          kubectl get svc -n messaging
